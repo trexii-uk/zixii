@@ -9,27 +9,24 @@
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth;
-    }
     body {
       background-color: #000;
       color: #00ffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     /* Navbar */
     nav {
-      position: fixed;
-      width: 100%;
       background: #111;
       display: flex;
       justify-content: center;
       padding: 1rem 0;
-      top: 0;
-      z-index: 100;
       box-shadow: 0 0 15px #00ffff44;
+      user-select: none;
     }
     nav ul {
       list-style: none;
@@ -45,8 +42,8 @@
       border-radius: 6px;
       transition: all 0.3s ease;
       box-shadow: 0 0 5px transparent;
+      cursor: pointer;
     }
-    nav a:hover,
     nav a.active {
       color: #00ffff;
       box-shadow:
@@ -55,37 +52,38 @@
         0 0 20px #00ffff;
       background: #002222;
     }
+    nav a:hover:not(.active) {
+      color: #00ffffdd;
+    }
 
-    /* Container for sections */
+    /* Container */
     main {
+      flex-grow: 1;
       max-width: 900px;
-      margin: 100px auto 60px;
+      margin: 40px auto 60px;
       padding: 0 20px;
-    }
-    section {
-      margin-bottom: 6rem;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeInUp 1s forwards;
-    }
-    section:nth-child(1) {
-      animation-delay: 0.3s;
-    }
-    section:nth-child(2) {
-      animation-delay: 0.6s;
-    }
-    section:nth-child(3) {
-      animation-delay: 0.9s;
-    }
-    section:nth-child(4) {
-      animation-delay: 1.2s;
+      position: relative;
+      min-height: 300px;
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+      color: #ccc;
+    }
+    section.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      position: relative;
     }
 
     h1 {
@@ -107,7 +105,6 @@
     }
     p, li {
       font-size: 1.15rem;
-      color: #ccc;
     }
     ul {
       list-style: disc inside;
@@ -130,6 +127,7 @@
       box-shadow: 0 0 10px #00ffff44;
       text-align: center;
       user-select: none;
+      text-decoration: none;
     }
     .btn:hover {
       background: #00ffff22;
@@ -158,15 +156,15 @@
 
 <nav>
   <ul>
-    <li><a href="#about" class="active">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-link active" data-target="about">About</a></li>
+    <li><a class="nav-link" data-target="skills">Skills</a></li>
+    <li><a class="nav-link" data-target="projects">Projects</a></li>
+    <li><a class="nav-link" data-target="contact">Contact</a></li>
   </ul>
 </nav>
 
 <main>
-  <section id="about">
+  <section id="about" class="active">
     <h1>Zixii</h1>
     <p>
       Hey! I'm a C++ & Python coder who loves building cool tools and projects.
@@ -201,9 +199,7 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>
-      I'm not on email or LinkedIn. You can find me on GitHub:
-    </p>
+    <p>I'm not on email or LinkedIn. You can find me on GitHub:</p>
     <a
       href="https://github.com/trexii-uk"
       class="btn"
@@ -215,24 +211,26 @@
 </main>
 
 <script>
-  // Highlight active nav link on scroll
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll("nav a");
+  const links = document.querySelectorAll(".nav-link");
+  const sections = document.querySelectorAll("main section");
 
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
-      if (pageYOffset >= sectionTop) {
-        current = section.getAttribute("id");
-      }
-    });
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      // Remove active class from all links
+      links.forEach(l => l.classList.remove("active"));
+      // Add active to clicked link
+      link.classList.add("active");
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active");
-      }
+      const targetId = link.dataset.target;
+
+      // Hide all sections
+      sections.forEach(section => {
+        if(section.id === targetId) {
+          section.classList.add("active");
+        } else {
+          section.classList.remove("active");
+        }
+      });
     });
   });
 </script>
