@@ -1,0 +1,58 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+
+export default function AboutMe() {
+  return (
+    <main className="min-h-screen bg-black text-white font-sans">
+      <div className="bg-gradient-to-b from-zinc-900 to-black p-12 text-center">
+        <h1 className="text-6xl font-extrabold mb-2">Hey, I'm Zixii</h1>
+        <p className="text-xl text-gray-400">C++ & Python Coder | Building Cool Stuff</p>
+      </div>
+
+      <div className="max-w-5xl mx-auto grid gap-10 p-8">
+        <Card className="bg-zinc-900 border-zinc-700 shadow-2xl">
+          <CardContent className="p-6">
+            <h2 className="text-3xl font-bold mb-4">About Me</h2>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              I'm a kid who loves tech, coding, and creating awesome projects. I started with Scratch,
+              then jumped into real code with Python and C++. I enjoy making useful tools, experimenting with ideas,
+              and having fun while learning how everything works under the hood.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-zinc-900 border-zinc-700 shadow-2xl">
+          <CardContent className="p-6">
+            <h2 className="text-3xl font-bold mb-4">Skills</h2>
+            <ul className="text-gray-300 list-disc list-inside space-y-2 text-lg">
+              <li>C++ Programming (apps, system tools)</li>
+              <li>Python (overlays, scripting)</li>
+              <li>Debugging & Problem Solving</li>
+              <li>Creative Thinking & Rapid Prototyping</li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-zinc-900 border-zinc-700 shadow-2xl">
+          <CardContent className="p-6">
+            <h2 className="text-3xl font-bold mb-4">Projects</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="bg-zinc-800 p-4 rounded-xl shadow-inner">
+                <h3 className="text-xl font-semibold">🎹 Python Keyboard Overlay</h3>
+                <p className="text-gray-400">Displays real-time key presses on screen. Clean and lightweight.</p>
+              </div>
+              <div className="bg-zinc-800 p-4 rounded-xl shadow-inner">
+                <h3 className="text-xl font-semibold">🛠️ Fake Roblox Executor (C++)</h3>
+                <p className="text-gray-400">A spoof tool made for fun that mimics a Roblox script executor interface.</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <footer className="text-center text-gray-600 text-sm mt-10">
+          © {new Date().getFullYear()} Zixii. All rights reserved.
+        </footer>
+      </div>
+    </main>
+  );
+}
