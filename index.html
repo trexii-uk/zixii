@@ -1,44 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zixii - About Me</title>
+  <title>Zixii - Portfolio</title>
   <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
-      margin: 0;
       background-color: #000;
       color: #00ffff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: #111;
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
+      padding: 1rem 0;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 0 15px #00ffff44;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 3rem;
+    }
+    nav a {
+      color: #00ffffaa;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 5px transparent;
+    }
+    nav a:hover,
+    nav a.active {
+      color: #00ffff;
+      box-shadow:
+        0 0 8px #00ffff,
+        0 0 15px #00ffff,
+        0 0 20px #00ffff;
+      background: #002222;
+    }
+
+    /* Container for sections */
+    main {
+      max-width: 900px;
+      margin: 100px auto 60px;
+      padding: 0 20px;
+    }
+    section {
+      margin-bottom: 6rem;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s forwards;
+    }
+    section:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+    section:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+    section:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+    section:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
-      font-size: 6rem;
+      font-size: 4.5rem;
       font-weight: 900;
+      color: #00ffff;
       text-shadow:
         0 0 10px #00ffff,
         0 0 20px #00ffff,
         0 0 30px #00ffff;
-      margin: 0 0 20px 0;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #00ffffaa;
+      padding-bottom: 0.25rem;
+    }
+    p, li {
+      font-size: 1.15rem;
+      color: #ccc;
+    }
+    ul {
+      list-style: disc inside;
+      margin-top: 0.5rem;
     }
 
-    p {
-      font-size: 1.5rem;
-      color: #ccc;
-      max-width: 600px;
-      margin: 0;
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #00ffff;
+      background: transparent;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px #00ffff44;
+      text-align: center;
+      user-select: none;
+    }
+    .btn:hover {
+      background: #00ffff22;
+      box-shadow:
+        0 0 15px #00ffff,
+        0 0 30px #00ffff,
+        0 0 45px #00ffff;
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+      nav ul {
+        gap: 1.5rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Zixii</h1>
-  <p>C++ & Python coder who loves building cool tools and projects. Always learning and having fun with code.</p>
+
+<nav>
+  <ul>
+    <li><a href="#about" class="active">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section id="about">
+    <h1>Zixii</h1>
+    <p>
+      Hey! I'm a C++ & Python coder who loves building cool tools and projects.
+      Always learning, always experimenting, and having fun with code.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>C++ Programming (games, console apps)</li>
+      <li>Python (bots, automation, fun scripts)</li>
+      <li>Debugging & Problem Solving</li>
+      <li>Creative Thinking & Rapid Prototyping</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>
+        <strong>Python Chatbot:</strong> A fun terminal bot that tells jokes, answers questions, and plays games.
+      </li>
+      <li>
+        <strong>C++ Maze Game:</strong> A console maze adventure with puzzles to solve and escape.
+      </li>
+      <li>
+        <strong>Roblox Executor (Fake):</strong> An educational tool to learn about C++ hooking and automation.
+      </li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      I'm not on email or LinkedIn. You can find me on GitHub:
+    </p>
+    <a
+      href="https://github.com/trexii-uk"
+      class="btn"
+      target="_blank"
+      rel="noopener noreferrer"
+      >GitHub Profile</a
+    >
+  </section>
+</main>
+
+<script>
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
